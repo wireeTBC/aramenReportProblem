@@ -1,0 +1,23 @@
+.container {
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #fafafa;
+  }
+
+  th,
+  td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
+
+  th {
+    border-bottom: 1px solid  rgba(0, 0, 0, 0.06);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background-color:  #fafafa;
+    color: #212936;
+  }
+}
