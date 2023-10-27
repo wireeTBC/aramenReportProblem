@@ -91,6 +91,20 @@
     }
   }
 
+  .tbl {
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #c3c3c3;
+    outline: 1px solid #c3c3c3;
+    th,
+    td {
+      border: 1px solid #c3c3c3;
+    }
+    width: 100%;
+    color: #323232;
+  }
+
   input {
     display: flex;
     align-items: center;

@@ -9,13 +9,13 @@ import axios from "axios";
 
 export default function Home() {
   const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET, POST',
-    'Access-Control-Allow-Headers': 'Content-Type',
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, POST",
+    "Access-Control-Allow-Headers": "Content-Type",
     Authorization:
       "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLWRldiEifQ.3lNBYk030zha186nx9rjAE6FL90RretP1fbU0liOju0",
   };
-  
+
   const boardcast = async () => {
     console.log("boardcast");
     try {
@@ -33,7 +33,7 @@ export default function Home() {
       };
 
       const response = await axios.post(
-        "https://mobile-app-dev.a-ramen.com/api/cms/notification/broadcast",
+        "http://localhost:8000/api/suggestion",
         data,
         { headers }
       );

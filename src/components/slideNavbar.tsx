@@ -10,39 +10,25 @@ const Sidebar = () => {
       <div className="pt-16">
         <span>Module</span>
         <ul>
-          <Link href="/coupon">
-            <li
-              className={`${
-                pathname == "/coupon" ? styles.itemActive : styles.item
-              }`}
-            >
-              <img src="/assets/Ticket.svg" alt="" />
-              Coupon
-            </li>
-          </Link>
           <Link href="/">
             <li
               className={`${pathname == "/" ? styles.itemActive : styles.item}`}
             >
               <img src="/assets/Percent.svg" alt="" />
-              Promotion
+              Problem
             </li>
           </Link>
-          <Link href="/news">
+          <Link href="/Suggestion">
             <li
               className={`${
-                pathname == "/news" ? styles.itemActive : styles.item
+                pathname == "/Suggestion" ? styles.itemActive : styles.item
               }`}
             >
               <img src="/assets/Newspaper.svg" alt="" />
-              News
+              Suggestion
             </li>
           </Link>
         </ul>
-      </div>
-      <div className={styles.item}>
-        <img src="/assets/GearSix.svg" alt="" />
-        <Link href="/contact">Setting</Link>
       </div>
     </nav>
   );
