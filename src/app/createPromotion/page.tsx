@@ -1,9 +1,6 @@
 "use client";
-import Header from "@/components/header";
-import Image from "next/image";
 import Link from "next/link";
 import styles from "../../styles/Page.module.scss";
-import { ChangeEvent, useState } from "react";
 import Dropzone from "@/components/dropZone";
 import axios from "axios";
 

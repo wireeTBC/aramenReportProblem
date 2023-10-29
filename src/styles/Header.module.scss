@@ -7,9 +7,9 @@
   padding-left: 24px;
   padding-right: 24px;
   height: 63px;
-  position: absolute;
+  position: fixed;
   width: 100vw;
-
+  z-index: 100;
   .logo {
     display: flex;
     align-items: center;

@@ -93,13 +93,14 @@
 
   .tbl {
     border-collapse: collapse;
-    border-radius: 8px;
+    border-radius: 4px;
     overflow: hidden;
     border: 1px solid #c3c3c3;
     outline: 1px solid #c3c3c3;
     th,
     td {
       border: 1px solid #c3c3c3;
+      padding: 8px;
     }
     width: 100%;
     color: #323232;
@@ -151,5 +152,28 @@
 
   label:hover {
     background-color: #eee;
+  }
+  .image-container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+  }
+
+  .skeletonLoader {
+    width: 75px;
+    height: 150px;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 2s infinite;
+  }
+
+  @keyframes loading {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
   }
 }

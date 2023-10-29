@@ -12,13 +12,13 @@ const Sidebar = () => {
         <ul>
           <Link href="/">
             <li
-              className={`${pathname == "/" ? styles.itemActive : styles.item}`}
+              className={`${pathname == "/" ? styles.itemActive : styles.item} mt-2`}
             >
-              <img src="/assets/Percent.svg" alt="" />
-              Problem
+              {/* <img src="/assets/Percent.svg" alt="" /> */}
+               Problem / Suggestion
             </li>
           </Link>
-          <Link href="/Suggestion">
+          {/* <Link href="/Suggestion">
             <li
               className={`${
                 pathname == "/Suggestion" ? styles.itemActive : styles.item
@@ -27,7 +27,7 @@ const Sidebar = () => {
               <img src="/assets/Newspaper.svg" alt="" />
               Suggestion
             </li>
-          </Link>
+          </Link> */}
         </ul>
       </div>
     </nav>
