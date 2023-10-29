@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning={true}>
+    <html lang="en" suppressHydrationWarning={true} style={{backgroundColor:"#f2f3fa"}}>
       <head>
         <link rel="icon" type="image/svg+xml" href="assets/Aramen logo.svg"></link>
       </head>
