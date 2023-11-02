@@ -17,12 +17,12 @@ export default function Home() {
   const fetchDataImage = async (imagePath: string) => {
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/fileName?key=${imagePath}`,
+        `https://mobile-app-prod.a-ramen.com/api/fileName?key=${imagePath}`,
         {
           headers: {
             "Content-Type": "image/png",
             Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLWRldiEifQ._BI5WpZOfJren2VRUUNnK4LP7zQH28IYRn4COA2RRlI",
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXByb2QhIn0.Fqu5jwxkbym-VqwuiYCNiFTe8mcSi3HlUbK_Qa7ExAc",
           },
           responseType: "arraybuffer",
         }
@@ -40,10 +40,10 @@ export default function Home() {
 
   const fetchData = async () => {
     try {
-      const result = await axios.get("http://localhost:8000/api/suggestion", {
+      const result = await axios.get("https://mobile-app-prod.a-ramen.com/api/suggestion", {
         headers: {
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLWRldiEifQ._BI5WpZOfJren2VRUUNnK4LP7zQH28IYRn4COA2RRlI",
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXByb2QhIn0.Fqu5jwxkbym-VqwuiYCNiFTe8mcSi3HlUbK_Qa7ExAc",
         },
       });
       setData(result.data);
@@ -87,7 +87,7 @@ export default function Home() {
     <main>
       <div className={`${styles.container} h-full`}>
         <div className="flex justify-between w-full">
-          <h1 className={`${styles.title}`}>Problem</h1>
+          <h1 className={`${styles.title}`}>Problem / Suggestion</h1>
           {/* <Link className={styles.btnDone} href="/createPromotion">
             <div className={styles.done}>Create Promotion</div>
           </Link> */}
