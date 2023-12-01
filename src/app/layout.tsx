@@ -16,15 +16,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning={true} style={{backgroundColor:"#f2f3fa"}}>
+    <html
+      lang="en"
+      suppressHydrationWarning={true}
+      style={{ backgroundColor: "#f2f3fa" }}
+    >
       <head>
-        <link rel="icon" type="image/svg+xml" href="assets/Aramen logo.svg"></link>
+        <link
+          rel="icon"
+          type="image/svg+xml"
+          href="assets/Aramen logo.svg"
+        ></link>
       </head>
       <body>
         <Header userName="Wirawat Jaiarree" />
-        <div className="flex w-screen">
-          {/* <Sidebar></Sidebar> */}
+        <div className="flex flex-row">
+          <Sidebar></Sidebar>
           <div className="flex-1">{children}</div>
+          {/* <div>test</div> */}
         </div>
       </body>
     </html>

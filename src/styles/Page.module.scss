@@ -1,5 +1,4 @@
 .container {
-  display: flex;
   padding: 24px;
   flex-direction: column;
   align-items: flex-start;
@@ -14,6 +13,7 @@
     font-weight: 700;
     color: black;
     align-self: center;
+    margin-bottom: 24px;
   }
 
   .btnDone {

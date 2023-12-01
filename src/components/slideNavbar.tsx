@@ -14,20 +14,20 @@ const Sidebar = () => {
             <li
               className={`${pathname == "/" ? styles.itemActive : styles.item} mt-2`}
             >
-              {/* <img src="/assets/Percent.svg" alt="" /> */}
+              <img src="/assets/Percent.svg" alt="" />
                Problem / Suggestion
             </li>
           </Link>
-          {/* <Link href="/Suggestion">
+          <Link href="/dashboard">
             <li
               className={`${
-                pathname == "/Suggestion" ? styles.itemActive : styles.item
+                pathname == "/dashboard" ? styles.itemActive : styles.item
               }`}
             >
               <img src="/assets/Newspaper.svg" alt="" />
-              Suggestion
+              Dashboard
             </li>
-          </Link> */}
+          </Link>
         </ul>
       </div>
     </nav>
