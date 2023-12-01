@@ -13,11 +13,11 @@ export default function Home() {
     setIsLoading(false);
     console.log("Image loaded!");
   };
-
+  const host = " https://a58d-171-96-25-106.ngrok-free.app";
   const fetchDataImage = async (imagePath: string) => {
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/fileName?key=${imagePath}`,
+        `${host}/api/fileName?key=${imagePath}`,
         {
           headers: {
             "Content-Type": "image/png",
@@ -40,7 +40,7 @@ export default function Home() {
 
   const fetchData = async () => {
     try {
-      const result = await axios.get("http://localhost:8000/api/suggestion", {
+      const result = await axios.get(`${host}/api/suggestion`, {
         headers: {
           Authorization:
             "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXByb2QhIn0.Fqu5jwxkbym-VqwuiYCNiFTe8mcSi3HlUbK_Qa7ExAc",

@@ -19,7 +19,7 @@ import axios from "axios";
 import { format } from "path";
 
 export default function Dashboard() {
-  const host = "http://localhost:8000";
+  const host = " https://a58d-171-96-25-106.ngrok-free.app";
   const [countEarnPointGroupByBranchId, setCountEarnPointGroupByBranchId] =
     useState<any>();
   const [
