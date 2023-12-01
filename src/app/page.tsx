@@ -13,7 +13,7 @@ export default function Home() {
     setIsLoading(false);
     console.log("Image loaded!");
   };
-  const host = " https://a58d-171-96-25-106.ngrok-free.app";
+  const host = "https://e2e5-171-96-25-106.ngrok-free.app";
   const fetchDataImage = async (imagePath: string) => {
     try {
       const response = await axios.get(
