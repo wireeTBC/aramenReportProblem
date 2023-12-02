@@ -31,7 +31,7 @@ export default function RootLayout({
       <body>
         <Header userName="Wirawat Jaiarree" />
         <div className="flex flex-row">
-          <Sidebar></Sidebar>
+          {/* <Sidebar></Sidebar> */}
           <div className="flex-1">{children}</div>
           {/* <div>test</div> */}
         </div>

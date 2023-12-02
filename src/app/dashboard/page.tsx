@@ -19,7 +19,7 @@ import axios from "axios";
 import { format } from "path";
 
 export default function Dashboard() {
-  const host = "https://e2e5-171-96-25-106.ngrok-free.app";
+  const host = "http://localhost:8000";
   const [countEarnPointGroupByBranchId, setCountEarnPointGroupByBranchId] =
     useState<any>();
   const [
@@ -181,7 +181,36 @@ export default function Dashboard() {
       console.log(e);
     }
   };
-  useEffect(() => {
+
+  const [userRegisterDailyByDateAndHour, setUserRegisterDailyByDateAndHour] =
+    useState<any>();
+  const getUserRegisterDailyByDateAndHour = async () => {
+    try {
+      const result = await axios.get(
+        `${host}/api/cms/getUserRegisterDailyByDateAndHour`,
+        {}
+      );
+      setUserRegisterDailyByDateAndHour(result.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const [userEarnPointDailyByDateAndHour, setUserEarnPointDailyByDateAndHour] =
+    useState<any>();
+  const getUserEarnPointDailyByDateAndHour = async () => {
+    try {
+      const result = await axios.get(
+        `${host}/api/cms/getUserEarnPointDailyByDateAndHour`,
+        {}
+      );
+      setUserEarnPointDailyByDateAndHour(result.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const fetchData = () => {
     getCountEarnPointGroupByBranchId();
     getTotalUserTransferPointGroupByDate();
     getTotalUsersGroupByDate();
@@ -191,9 +220,19 @@ export default function Dashboard() {
     getTotalUser();
     getTotalUserTransferPoint();
     getTotalMemberDelete();
-    // getTotalUseCoupon80Baht();
     getTotalUserMemberTierGroupByTier();
     getUserRegisterDaily();
+    getUserRegisterDailyByDateAndHour();
+    getUserEarnPointDailyByDateAndHour();
+  };
+
+  useEffect(() => {
+    fetchData();
+    const intervalId = setInterval(() => {
+      fetchData();
+    }, 60000);
+
+    return () => clearInterval(intervalId);
   }, []);
 
   interface NumberFormatterProps {
@@ -211,18 +250,26 @@ export default function Dashboard() {
         <div className="flex justify-between w-full"></div>
         <h1 className={styles.title}>Dashboard</h1>
 
-        <div className="flex">
-          <div className="grid grid-rows-2 grid-flow-col gap-4 w-full  mr-4">
+        <div className="flex xl:flex-row lg:flex-col sm:flex-col md:flex-col flex-col">
+          <div className="xl:grid lg:grid md:grid sm:grid grid-rows-2 grid-flow-col gap-4 w-full  mr-4">
             <Card decoration="top" decorationColor="rose">
               <Text>Total Register</Text>
               <NumberFormatter number={totalUser ?? 0} />
             </Card>
-            <Card decoration="top" decorationColor="rose">
+            <Card
+              decoration="top"
+              decorationColor="rose"
+              className="mt-4 xl:mt-0 lg:mt-0 md:mt-0 sm:mt-0"
+            >
               <Text>Total Transfer Point</Text>
               <NumberFormatter number={totalUserTransferPoint ?? 0} />
             </Card>
 
-            <Card decoration="top" decorationColor="rose">
+            <Card
+              decoration="top"
+              decorationColor="rose"
+              className="mt-4 xl:mt-0 lg:mt-0 md:mt-0 sm:mt-0"
+            >
               <Text>Total Register Daily</Text>
               <Flex justifyContent="start" className="truncate space-x-3">
                 <Metric>{userRegisterDaily?.totalUserToday ?? 0}</Metric>
@@ -238,12 +285,20 @@ export default function Dashboard() {
                 </Flex>
               </Flex>
             </Card>
-            <Card decoration="top" decorationColor="rose">
+            <Card
+              decoration="top"
+              decorationColor="rose"
+              className="mt-4 xl:mt-0 lg:mt-0 md:mt-0 sm:mt-0"
+            >
               <Text>Total Delete User</Text>
               <NumberFormatter number={totalMemberDelete ?? 0} />
             </Card>
           </div>
-          <Card className="max-w-lg" decoration="top" decorationColor="rose">
+          <Card
+            className="lg:mt-4 xl:mt-0 mt-4"
+            decoration="top"
+            decorationColor="rose"
+          >
             <Title>User Teir Level</Title>
             <BarChart
               className="h-72 mt-4"
@@ -256,7 +311,7 @@ export default function Dashboard() {
         </div>
 
         <Card className="mb-4 mt-4">
-          <Title>Member Register</Title>
+          <Title>Member Register Daily Total</Title>
           <AreaChart
             className="mt-6"
             data={totalUsersGroupByDate?.data}
@@ -266,17 +321,56 @@ export default function Dashboard() {
             yAxisWidth={50}
           />
         </Card>
-        <Card className="mb-4">
-          <Title>User Transfer Point</Title>
-          <AreaChart
-            className="mt-6"
-            data={totalUserTransferPointGroupByDate?.data}
-            index="date"
-            categories={["count"]}
-            colors={["rose"]}
-            yAxisWidth={50}
-          />
-        </Card>
+        <div className="flex xl:flex-row lg:flex-row sm:flex-col md:flex-row flex-col">
+          <Card className="mb-4 mr-2">
+            <Title>Member Register Daily Hour</Title>
+            <AreaChart
+              className="mt-6"
+              data={userRegisterDailyByDateAndHour?.data}
+              index="date"
+              categories={["count"]}
+              colors={["rose"]}
+              yAxisWidth={50}
+            />
+          </Card>
+          <Card className="mb-4 ml-2">
+            <Title>Member Earn Point Daily Hour</Title>
+            <AreaChart
+              className="mt-6"
+              data={userEarnPointDailyByDateAndHour?.data}
+              index="date"
+              categories={["count"]}
+              colors={["rose"]}
+              yAxisWidth={50}
+            />
+          </Card>
+        </div>
+        <div className="flex xl:flex-row lg:flex-row sm:flex-col md:flex-row flex-col">
+
+          <Card className="mb-4 mr-2">
+            <Title>User Transfer Point</Title>
+            <AreaChart
+              className="mt-6"
+              data={totalUserTransferPointGroupByDate?.data}
+              index="date"
+              categories={["count"]}
+              colors={["rose"]}
+              yAxisWidth={50}
+            />
+          </Card>
+          <Card className="mb-4 ml-2">
+            <Title>Earn Food Story Fail (Earn Cron Job)</Title>
+            <AreaChart
+              className="mt-6"
+              data={totalScanFailGroupByDate?.data}
+              index="date"
+              categories={["count"]}
+              colors={["rose"]}
+              yAxisWidth={50}
+            />
+          </Card>
+        </div>
+
         <Card className="mb-4">
           <Title>Earn point of each branch</Title>
           <BarChart
@@ -287,7 +381,7 @@ export default function Dashboard() {
             colors={["rose"]}
           />
         </Card>
-        <div className="flex">
+        <div className="flex xl:flex-row lg:flex-row sm:flex-col md:flex-row flex-col">
           <Card className="mb-4 mr-2">
             <Title>Coupon privilege used</Title>
             <BarChart
@@ -309,18 +403,6 @@ export default function Dashboard() {
             />
           </Card>
         </div>
-
-        <Card className="mb-4">
-          <Title>Earn Food Story Fail (Earn Cron Job)</Title>
-          <AreaChart
-            className="mt-6"
-            data={totalScanFailGroupByDate?.data}
-            index="date"
-            categories={["count"]}
-            colors={["rose"]}
-            yAxisWidth={50}
-          />
-        </Card>
       </div>
     </main>
   );
