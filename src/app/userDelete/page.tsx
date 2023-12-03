@@ -18,7 +18,7 @@ import { format } from "path";
 
 export default function Dashboard() {
   // const host = "http://localhost:8000";
-  const host = "https://2940-171-96-25-106.ngrok-free.app";
+  const host = "https://93fa-171-96-25-106.ngrok-free.app";
   const [listOfUserDeleteAccount, setListOfUserDeleteAccount] = useState<any>();
 
   const getListOfUserDeleteAccount = async () => {
