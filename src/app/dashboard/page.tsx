@@ -20,8 +20,8 @@ import { format } from "path";
 import Link from "next/link";
 
 export default function Dashboard() {
-  const host = "http://localhost:8000";
-  // const host = "https://beb4-171-96-25-106.ngrok-free.app";
+  // const host = "http://localhost:8000";
+  const host = "https://2940-171-96-25-106.ngrok-free.app";
   const [countEarnPointGroupByBranchId, setCountEarnPointGroupByBranchId] =
     useState<any>();
   const [

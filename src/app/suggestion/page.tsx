@@ -13,7 +13,8 @@ export default function Suggestion() {
     setIsLoading(false);
     console.log("Image loaded!");
   };
-  const host = "http://localhost:8000";
+  // const host = "http://localhost:8000";
+  const host = "https://2940-171-96-25-106.ngrok-free.app";
   const fetchDataImage = async (imagePath: string) => {
     try {
       const response = await axios.get(
