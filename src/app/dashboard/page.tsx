@@ -122,7 +122,9 @@ export default function Dashboard() {
   const [totalUser, setTotalUser] = useState<any>();
   const getTotalUser = async () => {
     try {
-      const result = await axios.get(`${host}/api/cms/getTotalUser`, {});
+      const result = await axios.get(`${host}/api/cms/getTotalUser`, {
+        headers: { "ngrok-skip-browser-warning": "69420" },
+      });
       setTotalUser(result.data.data);
     } catch (e) {
       console.log(e);
