@@ -6,8 +6,9 @@
   align-items: flex-start;
   align-self: stretch;
   background-color: white;
-  // height: 100vh;
-  // position: fixed;
+  height: 100vh;
+  position: fixed;
+  z-index: 10;
   span {
     color: var(--neutral-medium, #bfbfbf);
     font-size: 12px;

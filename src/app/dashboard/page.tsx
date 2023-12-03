@@ -17,9 +17,11 @@ import {
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { format } from "path";
+import Link from "next/link";
 
 export default function Dashboard() {
   const host = "http://localhost:8000";
+  // const host = "https://beb4-171-96-25-106.ngrok-free.app";
   const [countEarnPointGroupByBranchId, setCountEarnPointGroupByBranchId] =
     useState<any>();
   const [
@@ -285,14 +287,18 @@ export default function Dashboard() {
                 </Flex>
               </Flex>
             </Card>
-            <Card
-              decoration="top"
-              decorationColor="rose"
-              className="mt-4 xl:mt-0 lg:mt-0 md:mt-0 sm:mt-0"
-            >
-              <Text>Total Delete User</Text>
-              <NumberFormatter number={totalMemberDelete ?? 0} />
-            </Card>
+            <Link href="userDelete">
+              <Card
+                decoration="top"
+                decorationColor="rose"
+                className="mt-4 xl:mt-0 lg:mt-0 md:mt-0 sm:mt-0 h-full"
+              >
+                <Text>Total Delete User</Text>
+                <NumberFormatter number={totalMemberDelete ?? 0} />
+                <Text className="truncate mt-2">Click here to see list of deleteion user</Text>
+
+              </Card>
+            </Link>
           </div>
           <Card
             className="lg:mt-4 xl:mt-0 mt-4"
@@ -346,7 +352,6 @@ export default function Dashboard() {
           </Card>
         </div>
         <div className="flex xl:flex-row lg:flex-row sm:flex-col md:flex-row flex-col">
-
           <Card className="mb-4 mr-2">
             <Title>User Transfer Point</Title>
             <AreaChart

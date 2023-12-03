@@ -1,140 +1,78 @@
-"use client";
-import axios from "axios";
-import styles from "../styles/Page.module.scss";
-import { useEffect, useState } from "react";
-//ProfileImage
+'use client';
 
-export default function Home() {
-  //path
-  const [path, setPath] = useState<string[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+import { useRouter } from 'next/navigation';
 
-  const handleImageLoad = () => {
-    setIsLoading(false);
-    console.log("Image loaded!");
+import { useState } from "react";
+import jwt from "jsonwebtoken";
+
+const LoginPage: React.FC = () => {
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const router = useRouter()
+  const handleLogin = async () => {
+    // const userId = "123";
+    // const token = jwt.sign({ userId }, "your-secret-key", { expiresIn: "1h" });
+    // document.cookie = `token=${token}; path=/; HttpOnly; SameSite=Strict`;
+
+    // Redirect to the dashboard
+    router.push("/dashboard");
   };
-  const host = "http://localhost:8000";
-  const fetchDataImage = async (imagePath: string) => {
-    try {
-      const response = await axios.get(
-        `${host}/api/fileName?key=${imagePath}`,
-        {
-          headers: {
-            "Content-Type": "image/png",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXByb2QhIn0.Fqu5jwxkbym-VqwuiYCNiFTe8mcSi3HlUbK_Qa7ExAc",
-          },
-          responseType: "arraybuffer",
-        }
-      );
-      const imageObject = new Blob([response.data], { type: "image/png" });
-      const objectURL = URL.createObjectURL(imageObject);
-      return objectURL;
-    } catch (e) {
-      console.log(e);
-      return null; // Return null in case of an error
-    }
-  };
-
-  const [data, setData] = useState<any>({ data: [] });
-
-  const fetchData = async () => {
-    try {
-      const result = await axios.get(`${host}/api/suggestion`, {
-        headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXByb2QhIn0.Fqu5jwxkbym-VqwuiYCNiFTe8mcSi3HlUbK_Qa7ExAc",
-        },
-      });
-      setData(result.data);
-
-      const imagePromises = result.data.data.map(async (item: any) => {
-        const imageUrl = item.SuggestionImage[0].suggestion_image;
-        try {
-          const imageObject = await fetchDataImage(imageUrl);
-          return imageObject; // Return the image object or null in case of an error
-        } catch (error) {
-          console.error("Error fetching image:", error);
-          return null;
-        }
-      });
-
-      const imageObjects = await Promise.all(imagePromises);
-
-      // Filter out null values (in case of errors) and only update the 'path' state with valid image URLs
-      const validImageObjects = imageObjects.filter(
-        (imageObject) => imageObject !== null
-      );
-
-      // Convert the filtered image objects to an array of strings
-      const filteredImageUrls = validImageObjects.map(
-        (imageObject) => imageObject as string
-      );
-
-      // Update the 'path' state with the filtered image URLs
-      setPath(filteredImageUrls);
-      console.log(path);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   return (
-    <main>
-      <div className={`${styles.container} h-full`}>
-        <div className="flex justify-between w-full">
-          <h1 className={`${styles.title}`}>Problem / Suggestion asdf</h1>
-          {/* <Link className={styles.btnDone} href="/createPromotion">
-            <div className={styles.done}>Create Promotion</div>
-          </Link> */}
-        </div>
+    <section className="bg-neutral-900 h-screen">
+      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
+        <img
+          src="../assets/aramen.svg"
+          alt="A RAMEN Icon"
+          width={72}
+          height={72}
+          className="absolute mb-80"
+        />
+        <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 ">
+          <div className="p-6 space-y-2 md:space-y-2">
+            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
+              Login
+            </h1>
+            <div >
+              <div>
+                <label className="block mb-2 text-sm font-medium text-gray-900">
+                  user
+                </label>
+                <input
+                  name="email"
+                  id="email"
+                  className="bg-gray-50 border border-gray-400 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 "
+                  placeholder="user ID"
+                />
+              </div>
+              <div>
+                <label className=" text-sm font-medium text-gray-900 dark:text-white">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="••••••••"
+                  className="bg-gray-50 border border-gray-400 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-400 block w-full p-2.5  "
+                />
+              </div>
 
-        <div className={styles.card}>
-          <table className={styles.tbl}>
-            <tbody>
-              <tr>
-                <td>No.</td>
-                <td>Type</td>
-                <td>Description</td>
-                <td>Date</td>
-                <td>Image</td>
-              </tr>
-              {data.data.map((x: any, i: any) => (
-                <tr key={i}>
-                  <td>{i + 1}.</td>
-                  <td>{x.suggestion_type}</td>
-                  <td>{x.suggestion_problem}</td>
-                  <td>
-                    {new Date(x.timestamp_created_datetime).toLocaleString(
-                      "th-TH",
-                      {
-                        day: "2-digit",
-                        month: "2-digit",
-                        year: "numeric",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      }
-                    )}
-                  </td>
-                  <td>
-                    <img
-                      id="test-img"
-                      src={path[i]}
-                      width={75}
-                      className={isLoading ? styles.skeletonLoader : ""}
-                      onLoad={handleImageLoad}
-                    />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+              <button
+                type="submit"
+                className="mt-6 w-full text-white bg-primary-600 hover:bg-black-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-3xl text-sm px-5 py-4 text-center"
+                style={{
+                  backgroundColor: "rgb(198 34 45/var(--tw-bg-opacity))",
+                }}
+                onClick={handleLogin}
+              >
+                Login
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-    </main>
+    </section>
   );
-}
+};
+
+export default LoginPage;
