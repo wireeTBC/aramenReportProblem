@@ -40,7 +40,9 @@ export default function Dashboard() {
     try {
       const result = await axios.get(
         `${host}/api/cms/getCountEarnPointGroupByBranchId`,
-        {}
+        {
+          headers: { "ngrok-skip-browser-warning": "69420" },
+        }
       );
       setCountEarnPointGroupByBranchId(result.data);
     } catch (e) {
@@ -51,7 +53,9 @@ export default function Dashboard() {
     try {
       const result = await axios.get(
         `${host}/api/cms/getTotalUserTransferPointGroupByDate`,
-        {}
+        {
+          headers: { "ngrok-skip-browser-warning": "69420" },
+        }
       );
       setTotalUserTransferPointGroupByDate(result.data);
     } catch (e) {
@@ -63,7 +67,9 @@ export default function Dashboard() {
     try {
       const result = await axios.get(
         `${host}/api/cms/getTotalUsersGroupByDate`,
-        {}
+        {
+          headers: { "ngrok-skip-browser-warning": "69420" },
+        }
       );
       setTotalUsersGroupByDate(result.data);
     } catch (e) {
@@ -75,7 +81,9 @@ export default function Dashboard() {
     try {
       const result = await axios.get(
         `${host}/api/cms/getTotalScanFailGroupByDate`,
-        {}
+        {
+          headers: { "ngrok-skip-browser-warning": "69420" },
+        }
       );
       setTotalScanFailGroupByDate(result.data);
     } catch (e) {
@@ -87,7 +95,9 @@ export default function Dashboard() {
     try {
       const result = await axios.get(
         `${host}/api/cms/getTotalUseCouponGroupByType`,
-        {}
+        {
+          headers: { "ngrok-skip-browser-warning": "69420" },
+        }
       );
       setTotalUseCouponGroupByType(result.data);
     } catch (e) {
@@ -99,7 +109,9 @@ export default function Dashboard() {
     try {
       const result = await axios.get(
         `${host}/api/cms/getTotalUseCouponMenuGroupByType`,
-        {}
+        {
+          headers: { "ngrok-skip-browser-warning": "69420" },
+        }
       );
       setTotalUseCouponMenuGroupByType(result.data);
     } catch (e) {
@@ -122,7 +134,9 @@ export default function Dashboard() {
     try {
       const result = await axios.get(
         `${host}/api/cms/getTotalUserTransferPoint`,
-        {}
+        {
+          headers: { "ngrok-skip-browser-warning": "69420" },
+        }
       );
       setTotalUserTransferPoint(result.data.data);
     } catch (e) {
@@ -133,10 +147,9 @@ export default function Dashboard() {
   const [totalMemberDelete, setTotalMemberDelete] = useState<any>();
   const getTotalMemberDelete = async () => {
     try {
-      const result = await axios.get(
-        `${host}/api/cms/getTotalMemberDelete`,
-        {}
-      );
+      const result = await axios.get(`${host}/api/cms/getTotalMemberDelete`, {
+        headers: { "ngrok-skip-browser-warning": "69420" },
+      });
       setTotalMemberDelete(result.data.data);
     } catch (e) {
       console.log(e);
@@ -148,7 +161,9 @@ export default function Dashboard() {
     try {
       const result = await axios.get(
         `${host}/api/cms/getTotalUseCoupon80Baht`,
-        {}
+        {
+          headers: { "ngrok-skip-browser-warning": "69420" },
+        }
       );
       setTotalUseCoupon80Baht(result.data.data);
     } catch (e) {
@@ -162,7 +177,9 @@ export default function Dashboard() {
     try {
       const result = await axios.get(
         `${host}/api/cms/getTotalUserMemberTierGroupByTier`,
-        {}
+        {
+          headers: { "ngrok-skip-browser-warning": "69420" },
+        }
       );
       setTotalUserMemberTierGroupByTier(result.data);
     } catch (e) {
@@ -173,10 +190,9 @@ export default function Dashboard() {
   const [userRegisterDaily, setUserRegisterDaily] = useState<any>();
   const getUserRegisterDaily = async () => {
     try {
-      const result = await axios.get(
-        `${host}/api/cms/getUserRegisterDaily`,
-        {}
-      );
+      const result = await axios.get(`${host}/api/cms/getUserRegisterDaily`, {
+        headers: { "ngrok-skip-browser-warning": "69420" },
+      });
       console.log(result.data.data.totalUserToday);
       setUserRegisterDaily(result.data.data);
     } catch (e) {
@@ -190,7 +206,9 @@ export default function Dashboard() {
     try {
       const result = await axios.get(
         `${host}/api/cms/getUserRegisterDailyByDateAndHour`,
-        {}
+        {
+          headers: { "ngrok-skip-browser-warning": "69420" },
+        }
       );
       setUserRegisterDailyByDateAndHour(result.data);
     } catch (e) {
@@ -204,7 +222,9 @@ export default function Dashboard() {
     try {
       const result = await axios.get(
         `${host}/api/cms/getUserEarnPointDailyByDateAndHour`,
-        {}
+        {
+          headers: { "ngrok-skip-browser-warning": "69420" },
+        }
       );
       setUserEarnPointDailyByDateAndHour(result.data);
     } catch (e) {
@@ -295,8 +315,9 @@ export default function Dashboard() {
               >
                 <Text>Total Delete User</Text>
                 <NumberFormatter number={totalMemberDelete ?? 0} />
-                <Text className="truncate mt-2">Click here to see list of deleteion user</Text>
-
+                <Text className="truncate mt-2">
+                  Click here to see list of deleteion user
+                </Text>
               </Card>
             </Link>
           </div>
