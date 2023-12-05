@@ -21,7 +21,7 @@ import Link from "next/link";
 
 export default function Dashboard() {
   // const host = "http://localhost:8000";
-  const host = "https://93fa-171-96-25-106.ngrok-free.app";
+  const host = "https://f05c-2405-9800-b520-f6ff-e078-e569-a930-f7d7.ngrok-free.app";
   const [countEarnPointGroupByBranchId, setCountEarnPointGroupByBranchId] =
     useState<any>();
   const [
@@ -234,6 +234,21 @@ export default function Dashboard() {
     }
   };
 
+  const [totalMemberGroupByAge, setTotalMemberGroupByAge] = useState<any>();
+  const getTotalMemberGroupByAge = async () => {
+    try {
+      const result = await axios.get(
+        `${host}/api/cms/getTotalMemberGroupByAge`,
+        {
+          headers: { "ngrok-skip-browser-warning": "69420" },
+        }
+      );
+      setTotalMemberGroupByAge(result.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const fetchData = () => {
     getCountEarnPointGroupByBranchId();
     getTotalUserTransferPointGroupByDate();
@@ -248,6 +263,7 @@ export default function Dashboard() {
     getUserRegisterDaily();
     getUserRegisterDailyByDateAndHour();
     getUserEarnPointDailyByDateAndHour();
+    getTotalMemberGroupByAge();
   };
 
   useEffect(() => {
@@ -431,6 +447,16 @@ export default function Dashboard() {
             />
           </Card>
         </div>
+        <Card className="mb-4 ml-2">
+          <Title>Member Age</Title>
+          <BarChart
+            className="h-72 mt-4"
+            data={totalMemberGroupByAge?.data}
+            index="age"
+            categories={["count"]}
+            colors={["rose"]}
+          />
+        </Card>
       </div>
     </main>
   );
