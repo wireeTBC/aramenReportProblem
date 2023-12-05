@@ -21,7 +21,8 @@ import Link from "next/link";
 
 export default function Dashboard() {
   // const host = "http://localhost:8000";
-  const host = "https://f05c-2405-9800-b520-f6ff-e078-e569-a930-f7d7.ngrok-free.app";
+  const host =
+    "https://f05c-2405-9800-b520-f6ff-e078-e569-a930-f7d7.ngrok-free.app";
   const [countEarnPointGroupByBranchId, setCountEarnPointGroupByBranchId] =
     useState<any>();
   const [
@@ -249,6 +250,22 @@ export default function Dashboard() {
     }
   };
 
+  const [totalMemberGroupByAgeRange, setTotalMemberGroupByAgeRange] =
+    useState<any>();
+  const getTotalMemberGroupByAgeRange = async () => {
+    try {
+      const result = await axios.get(
+        `${host}/api/cms/getTotalMemberGroupByAgeRange`,
+        {
+          headers: { "ngrok-skip-browser-warning": "69420" },
+        }
+      );
+      setTotalMemberGroupByAgeRange(result.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const fetchData = () => {
     getCountEarnPointGroupByBranchId();
     getTotalUserTransferPointGroupByDate();
@@ -264,6 +281,7 @@ export default function Dashboard() {
     getUserRegisterDailyByDateAndHour();
     getUserEarnPointDailyByDateAndHour();
     getTotalMemberGroupByAge();
+    getTotalMemberGroupByAgeRange();
   };
 
   useEffect(() => {
@@ -447,16 +465,28 @@ export default function Dashboard() {
             />
           </Card>
         </div>
-        <Card className="mb-4 ml-2">
-          <Title>Member Age</Title>
-          <BarChart
-            className="h-72 mt-4"
-            data={totalMemberGroupByAge?.data}
-            index="age"
-            categories={["count"]}
-            colors={["rose"]}
-          />
-        </Card>
+        <div className="flex xl:flex-row lg:flex-row sm:flex-col md:flex-row flex-col">
+          <Card className="mb-4 ml-2">
+            <Title>Member Age</Title>
+            <BarChart
+              className="h-72 mt-4"
+              data={totalMemberGroupByAge?.data}
+              index="age"
+              categories={["count"]}
+              colors={["rose"]}
+            />
+          </Card>
+          <Card className="mb-4 ml-2">
+            <Title>Member Age Range</Title>
+            <BarChart
+              className="h-72 mt-4"
+              data={totalMemberGroupByAgeRange?.data}
+              index="age_range"
+              categories={["count"]}
+              colors={["rose"]}
+            />
+          </Card>
+        </div>
       </div>
     </main>
   );
