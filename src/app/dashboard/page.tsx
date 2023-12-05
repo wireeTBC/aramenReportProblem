@@ -466,7 +466,7 @@ export default function Dashboard() {
           </Card>
         </div>
         <div className="flex xl:flex-row lg:flex-row sm:flex-col md:flex-row flex-col">
-          <Card className="mb-4 ml-2">
+          <Card className="mb-4 mr-2">
             <Title>Member Age</Title>
             <BarChart
               className="h-72 mt-4"
