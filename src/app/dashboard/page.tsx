@@ -479,7 +479,7 @@ export default function Dashboard() {
         </Card>
         <div className="flex xl:flex-row lg:flex-row sm:flex-col md:flex-row flex-col">
           <Card className="mb-4 mr-2">
-            <Title>Average member earn point per branch</Title>
+            <Title>Average member pricing per branch</Title>
             <BarChart
               className="h-72 mt-4"
               data={avgEarnPointPerDayGroupByBranch?.data}
@@ -489,7 +489,7 @@ export default function Dashboard() {
             />
           </Card>
           <Card className="mb-4 ml-2">
-            <Title>Average member earn point total branch</Title>
+            <Title>Average member pricing total branch</Title>
             <AreaChart
               className="h-72 mt-4"
               data={avgEarnPointPerDayGroupByDate?.data}
