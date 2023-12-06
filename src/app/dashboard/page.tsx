@@ -20,9 +20,9 @@ import { format } from "path";
 import Link from "next/link";
 
 export default function Dashboard() {
-  // const host = "http://localhost:8000";
-  const host =
-    "https://f05c-2405-9800-b520-f6ff-e078-e569-a930-f7d7.ngrok-free.app";
+  const host = "http://localhost:8000";
+  // const host =
+  //   "https://f05c-2405-9800-b520-f6ff-e078-e569-a930-f7d7.ngrok-free.app";
   const [countEarnPointGroupByBranchId, setCountEarnPointGroupByBranchId] =
     useState<any>();
   const [
@@ -266,6 +266,22 @@ export default function Dashboard() {
     }
   };
 
+  const [avgEarnPointPerDayGroupByBranch, setAvgEarnPointPerDayGroupByBranch] =
+    useState<any>();
+  const getAvgEarnPointPerDayGroupByBranch = async () => {
+    try {
+      const result = await axios.get(
+        `${host}/api/cms/getAvgEarnPointPerDayGroupByBranch`,
+        {
+          headers: { "ngrok-skip-browser-warning": "69420" },
+        }
+      );
+      setAvgEarnPointPerDayGroupByBranch(result.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const fetchData = () => {
     getCountEarnPointGroupByBranchId();
     getTotalUserTransferPointGroupByDate();
@@ -282,6 +298,7 @@ export default function Dashboard() {
     getUserEarnPointDailyByDateAndHour();
     getTotalMemberGroupByAge();
     getTotalMemberGroupByAgeRange();
+    getAvgEarnPointPerDayGroupByBranch();
   };
 
   useEffect(() => {
@@ -379,8 +396,8 @@ export default function Dashboard() {
             className="mt-6"
             data={totalUsersGroupByDate?.data}
             index="registration_date"
-            categories={["count"]}
-            colors={["rose"]}
+            categories={["count", "avg"]}
+            colors={["rose", "orange"]}
             yAxisWidth={50}
           />
         </Card>
@@ -434,12 +451,22 @@ export default function Dashboard() {
         </div>
 
         <Card className="mb-4">
-          <Title>Earn point of each branch</Title>
+          <Title>Total member earn point of each branch</Title>
           <BarChart
             className="h-72 mt-4"
             data={countEarnPointGroupByBranchId?.data}
             index="foodstory_branch_name"
             categories={["count"]}
+            colors={["rose"]}
+          />
+        </Card>
+        <Card className="mb-4">
+          <Title>Average member earn point of each branch</Title>
+          <BarChart
+            className="h-72 mt-4"
+            data={avgEarnPointPerDayGroupByBranch?.data}
+            index="branch"
+            categories={["avg"]}
             colors={["rose"]}
           />
         </Card>
