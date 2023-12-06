@@ -20,9 +20,9 @@ import { format } from "path";
 import Link from "next/link";
 
 export default function Dashboard() {
-  const host = "http://localhost:8000";
-  // const host =
-  //   "https://f05c-2405-9800-b520-f6ff-e078-e569-a930-f7d7.ngrok-free.app";
+  // const host = "http://localhost:8000";
+  const host =
+    "https://f05c-2405-9800-b520-f6ff-e078-e569-a930-f7d7.ngrok-free.app";
   const [countEarnPointGroupByBranchId, setCountEarnPointGroupByBranchId] =
     useState<any>();
   const [
@@ -282,6 +282,22 @@ export default function Dashboard() {
     }
   };
 
+  const [avgEarnPointPerDayGroupByDate, setAvgEarnPointPerDayGroupByDate] =
+    useState<any>();
+  const getAvgEarnPointPerDayGroupByDate = async () => {
+    try {
+      const result = await axios.get(
+        `${host}/api/cms/getAvgEarnPointPerDayGroupByDate`,
+        {
+          headers: { "ngrok-skip-browser-warning": "69420" },
+        }
+      );
+      setAvgEarnPointPerDayGroupByDate(result.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const fetchData = () => {
     getCountEarnPointGroupByBranchId();
     getTotalUserTransferPointGroupByDate();
@@ -299,6 +315,7 @@ export default function Dashboard() {
     getTotalMemberGroupByAge();
     getTotalMemberGroupByAgeRange();
     getAvgEarnPointPerDayGroupByBranch();
+    getAvgEarnPointPerDayGroupByDate();
   };
 
   useEffect(() => {
@@ -460,16 +477,28 @@ export default function Dashboard() {
             colors={["rose"]}
           />
         </Card>
-        <Card className="mb-4">
-          <Title>Average member earn point of each branch</Title>
-          <BarChart
-            className="h-72 mt-4"
-            data={avgEarnPointPerDayGroupByBranch?.data}
-            index="branch"
-            categories={["avg"]}
-            colors={["rose"]}
-          />
-        </Card>
+        <div className="flex xl:flex-row lg:flex-row sm:flex-col md:flex-row flex-col">
+          <Card className="mb-4 mr-2">
+            <Title>Average member earn point per branch</Title>
+            <BarChart
+              className="h-72 mt-4"
+              data={avgEarnPointPerDayGroupByBranch?.data}
+              index="branch"
+              categories={["avg"]}
+              colors={["rose"]}
+            />
+          </Card>
+          <Card className="mb-4 ml-2">
+            <Title>Average member earn point total branch</Title>
+            <AreaChart
+              className="h-72 mt-4"
+              data={avgEarnPointPerDayGroupByDate?.data}
+              index="date"
+              categories={["avg"]}
+              colors={["rose"]}
+            />
+          </Card>
+        </div>
         <div className="flex xl:flex-row lg:flex-row sm:flex-col md:flex-row flex-col">
           <Card className="mb-4 mr-2">
             <Title>Coupon privilege used</Title>
