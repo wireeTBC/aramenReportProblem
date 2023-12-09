@@ -13,6 +13,8 @@ import {
   DeltaType,
   Grid,
   BadgeDelta,
+  LineChart,
+  CategoryBar,
 } from "@tremor/react";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -22,7 +24,7 @@ import Link from "next/link";
 export default function Dashboard() {
   // const host = "http://localhost:8000";
   const host =
-    "https://f05c-2405-9800-b520-f6ff-e078-e569-a930-f7d7.ngrok-free.app";
+    "https://cf9d-2405-9800-b520-f6ff-258a-d5ac-69b3-2652.ngrok-free.app";
   const [countEarnPointGroupByBranchId, setCountEarnPointGroupByBranchId] =
     useState<any>();
   const [
@@ -409,15 +411,19 @@ export default function Dashboard() {
 
         <Card className="mb-4 mt-4">
           <Title>Member Register Daily Total</Title>
-          <AreaChart
-            className="mt-6"
-            data={totalUsersGroupByDate?.data}
-            index="registration_date"
-            categories={["count", "avg"]}
-            colors={["rose", "orange"]}
-            yAxisWidth={50}
-          />
+          <div>
+            <AreaChart
+              className="mt-6"
+              data={totalUsersGroupByDate?.data}
+              index="registration_date"
+              categories={["count", "avg", "eventTitle"]}
+              colors={["rose", "orange"]}
+              yAxisWidth={50}
+            />
+            <div>test</div>
+          </div>
         </Card>
+
         <div className="flex xl:flex-row lg:flex-row sm:flex-col md:flex-row flex-col">
           <Card className="mb-4 mr-2">
             <Title>Member Register Daily Hour</Title>

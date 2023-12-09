@@ -15,7 +15,7 @@ export default function Suggestion() {
   };
   // const host = "http://localhost:8000";
   const host =
-    "https://f05c-2405-9800-b520-f6ff-e078-e569-a930-f7d7.ngrok-free.app";
+    "https://cf9d-2405-9800-b520-f6ff-258a-d5ac-69b3-2652.ngrok-free.app";
   const fetchDataImage = async (imagePath: string) => {
     try {
       const response = await axios.get(
