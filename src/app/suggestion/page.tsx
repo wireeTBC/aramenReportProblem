@@ -14,8 +14,7 @@ export default function Suggestion() {
     console.log("Image loaded!");
   };
   // const host = "http://localhost:8000";
-  const host =
-    "https://cf9d-2405-9800-b520-f6ff-258a-d5ac-69b3-2652.ngrok-free.app";
+  const host = "https://a1d6-27-55-72-193.ngrok-free.app";
   const fetchDataImage = async (imagePath: string) => {
     try {
       const response = await axios.get(
@@ -25,6 +24,7 @@ export default function Suggestion() {
             "Content-Type": "image/png",
             Authorization:
               "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXByb2QhIn0.Fqu5jwxkbym-VqwuiYCNiFTe8mcSi3HlUbK_Qa7ExAc",
+            "ngrok-skip-browser-warning": "69420",
           },
           responseType: "arraybuffer",
         }
@@ -46,6 +46,7 @@ export default function Suggestion() {
         headers: {
           Authorization:
             "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXByb2QhIn0.Fqu5jwxkbym-VqwuiYCNiFTe8mcSi3HlUbK_Qa7ExAc",
+          "ngrok-skip-browser-warning": "69420",
         },
       });
       setData(result.data);
