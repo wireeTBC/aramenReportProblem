@@ -24,7 +24,7 @@ import Link from "next/link";
 export default function Dashboard() {
   // const host = "http://localhost:8000";
   const host =
-    "https://mobile-app-prod.a-ramen.com/";
+    "https://mobile-app-prod.a-ramen.com";
   const [countEarnPointGroupByBranchId, setCountEarnPointGroupByBranchId] =
     useState<any>();
   const [

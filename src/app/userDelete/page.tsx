@@ -18,7 +18,7 @@ import { format } from "path";
 
 export default function Dashboard() {
   // const host = "http://localhost:8000";
-  const host = "https://mobile-app-prod.a-ramen.com/";
+  const host = "https://mobile-app-prod.a-ramen.com";
   const [listOfUserDeleteAccount, setListOfUserDeleteAccount] = useState<any>();
 
   const getListOfUserDeleteAccount = async () => {
