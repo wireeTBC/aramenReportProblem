@@ -14,7 +14,7 @@ export default function Suggestion() {
     console.log("Image loaded!");
   };
   // const host = "http://localhost:8000";
-  const host = "https://fe45-171-96-25-97.ngrok-free.app";
+  const host = "https://mobile-app-prod.a-ramen.com/";
   const fetchDataImage = async (imagePath: string) => {
     try {
       const response = await axios.get(
