@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { useRouter } from 'next/navigation';
-
+import { useRouter } from "next/navigation";
+import { UserButton } from "@clerk/nextjs";
 import { useState } from "react";
 import jwt from "jsonwebtoken";
 
 const LoginPage: React.FC = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
-  const router = useRouter()
+  const router = useRouter();
   const handleLogin = async () => {
     // const userId = "123";
     // const token = jwt.sign({ userId }, "your-secret-key", { expiresIn: "1h" });
@@ -32,7 +32,7 @@ const LoginPage: React.FC = () => {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
               Login
             </h1>
-            <div >
+            <div>
               <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900">
                   user
