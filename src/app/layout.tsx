@@ -23,6 +23,11 @@ export default function RootLayout({
   useEffect(() => {
     if (!isTokenValid(token)) {
       router.push("/");
+    } else {
+      console.log(pathname);
+      if (pathname == "/") {
+        router.push("/dashboard");
+      }
     }
   }, [router]);
   return (

@@ -5,20 +5,13 @@ import {
   BarChart,
   Card,
   Flex,
-  Switch,
   Title,
   Metric,
   Text,
-  DonutChart,
-  DeltaType,
-  Grid,
   BadgeDelta,
-  LineChart,
-  CategoryBar,
 } from "@tremor/react";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { format } from "path";
 import Link from "next/link";
 
 export default function Dashboard() {
@@ -45,8 +38,7 @@ export default function Dashboard() {
         `${host}/api/dashboard/getCountEarnPointGroupByBranchId`,
         {
           headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+            Authorization: process.env.bearer_token,
           },
         }
       );
@@ -56,13 +48,13 @@ export default function Dashboard() {
     }
   };
   const getTotalUserTransferPointGroupByDate = async () => {
+    console.log(process.env.bearer_token);
     try {
       const result = await axios.get(
         `${host}/api/dashboard/getTotalUserTransferPointGroupByDate`,
         {
           headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+            Authorization: process.env.bearer_token,
           },
         }
       );
@@ -78,8 +70,7 @@ export default function Dashboard() {
         `${host}/api/dashboard/getTotalUsersGroupByDate`,
         {
           headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+            Authorization: process.env.bearer_token,
           },
         }
       );
@@ -95,8 +86,7 @@ export default function Dashboard() {
         `${host}/api/dashboard/getTotalScanFailGroupByDate`,
         {
           headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+            Authorization: process.env.bearer_token,
           },
         }
       );
@@ -112,8 +102,7 @@ export default function Dashboard() {
         `${host}/api/dashboard/getTotalUseCouponGroupByType`,
         {
           headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+            Authorization: process.env.bearer_token,
           },
         }
       );
@@ -129,8 +118,7 @@ export default function Dashboard() {
         `${host}/api/dashboard/getTotalUseCouponMenuGroupByType`,
         {
           headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+            Authorization: process.env.bearer_token,
           },
         }
       );
@@ -145,8 +133,7 @@ export default function Dashboard() {
     try {
       const result = await axios.get(`${host}/api/dashboard/getTotalUser`, {
         headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+          Authorization: process.env.bearer_token,
         },
       });
       setTotalUser(result.data.data);
@@ -162,8 +149,7 @@ export default function Dashboard() {
         `${host}/api/dashboard/getTotalUserTransferPoint`,
         {
           headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+            Authorization: process.env.bearer_token,
           },
         }
       );
@@ -176,12 +162,14 @@ export default function Dashboard() {
   const [totalMemberDelete, setTotalMemberDelete] = useState<any>();
   const getTotalMemberDelete = async () => {
     try {
-      const result = await axios.get(`${host}/api/dashboard/getTotalMemberDelete`, {
-        headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
-        },
-      });
+      const result = await axios.get(
+        `${host}/api/dashboard/getTotalMemberDelete`,
+        {
+          headers: {
+            Authorization: process.env.bearer_token,
+          },
+        }
+      );
       setTotalMemberDelete(result.data.data);
     } catch (e) {
       console.log(e);
@@ -195,8 +183,7 @@ export default function Dashboard() {
         `${host}/api/dashboard/getTotalUseCoupon80Baht`,
         {
           headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+            Authorization: process.env.bearer_token,
           },
         }
       );
@@ -214,8 +201,7 @@ export default function Dashboard() {
         `${host}/api/dashboard/getTotalUserMemberTierGroupByTier`,
         {
           headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+            Authorization: process.env.bearer_token,
           },
         }
       );
@@ -228,12 +214,14 @@ export default function Dashboard() {
   const [userRegisterDaily, setUserRegisterDaily] = useState<any>();
   const getUserRegisterDaily = async () => {
     try {
-      const result = await axios.get(`${host}/api/dashboard/getUserRegisterDaily`, {
-        headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
-        },
-      });
+      const result = await axios.get(
+        `${host}/api/dashboard/getUserRegisterDaily`,
+        {
+          headers: {
+            Authorization: process.env.bearer_token,
+          },
+        }
+      );
       console.log(result.data.data.totalUserToday);
       setUserRegisterDaily(result.data.data);
     } catch (e) {
@@ -249,8 +237,7 @@ export default function Dashboard() {
         `${host}/api/dashboard/getUserRegisterDailyByDateAndHour`,
         {
           headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+            Authorization: process.env.bearer_token,
           },
         }
       );
@@ -268,8 +255,7 @@ export default function Dashboard() {
         `${host}/api/dashboard/getUserEarnPointDailyByDateAndHour`,
         {
           headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+            Authorization: process.env.bearer_token,
           },
         }
       );
@@ -286,8 +272,7 @@ export default function Dashboard() {
         `${host}/api/dashboard/getTotalMemberGroupByAge`,
         {
           headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+            Authorization: process.env.bearer_token,
           },
         }
       );
@@ -305,8 +290,7 @@ export default function Dashboard() {
         `${host}/api/dashboard/getTotalMemberGroupByAgeRange`,
         {
           headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+            Authorization: process.env.bearer_token,
           },
         }
       );
@@ -324,8 +308,7 @@ export default function Dashboard() {
         `${host}/api/dashboard/getAvgEarnPointPerDayGroupByBranch`,
         {
           headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+            Authorization: process.env.bearer_token,
           },
         }
       );
@@ -343,8 +326,7 @@ export default function Dashboard() {
         `${host}/api/dashboard/getAvgEarnPointPerDayGroupByDate`,
         {
           headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+            Authorization: process.env.bearer_token,
           },
         }
       );
@@ -354,24 +336,30 @@ export default function Dashboard() {
     }
   };
 
-  const fetchData = () => {
-    getCountEarnPointGroupByBranchId();
-    getTotalUserTransferPointGroupByDate();
-    getTotalUsersGroupByDate();
-    getTotalScanFailGroupByDate();
-    getTotalUseCouponGroupByType();
-    getTotalUseCouponMenuGroupByType();
-    getTotalUser();
-    getTotalUserTransferPoint();
-    getTotalMemberDelete();
-    getTotalUserMemberTierGroupByTier();
-    getUserRegisterDaily();
-    getUserRegisterDailyByDateAndHour();
-    getUserEarnPointDailyByDateAndHour();
-    getTotalMemberGroupByAge();
-    getTotalMemberGroupByAgeRange();
-    getAvgEarnPointPerDayGroupByBranch();
-    getAvgEarnPointPerDayGroupByDate();
+  const fetchData = async () => {
+    await getTotalUser();
+    await getUserRegisterDaily();
+    await getTotalUserTransferPoint();
+    await getTotalMemberDelete();
+
+    await getTotalUserMemberTierGroupByTier();
+    await getTotalUsersGroupByDate();
+    await getUserRegisterDailyByDateAndHour();
+
+    await getCountEarnPointGroupByBranchId();
+    await getTotalUserTransferPointGroupByDate();
+
+    await getTotalScanFailGroupByDate();
+    await getTotalUseCouponGroupByType();
+    await getTotalUseCouponMenuGroupByType();
+
+    await getUserEarnPointDailyByDateAndHour();
+
+    await getAvgEarnPointPerDayGroupByBranch();
+    await getAvgEarnPointPerDayGroupByDate();
+
+    await getTotalMemberGroupByAge();
+    await getTotalMemberGroupByAgeRange();
   };
 
   useEffect(() => {
@@ -490,7 +478,7 @@ export default function Dashboard() {
               yAxisWidth={50}
             />
           </Card>
-          <Card className="mb-4 ml-2">
+          <Card className="mb-4 xl:ml-2 lg:ml-2 md:ml-2">
             <Title>Member Earn Point Daily Hour</Title>
             <AreaChart
               className="mt-6"
@@ -514,7 +502,7 @@ export default function Dashboard() {
               yAxisWidth={50}
             />
           </Card>
-          <Card className="mb-4 ml-2">
+          <Card className="mb-4 xl:ml-2 lg:ml-2 md:ml-2">
             <Title>Earn Food Story Fail (Earn Cron Job)</Title>
             <AreaChart
               className="mt-6"
@@ -548,7 +536,7 @@ export default function Dashboard() {
               colors={["rose"]}
             />
           </Card>
-          <Card className="mb-4 ml-2">
+          <Card className="mb-4 xl:ml-2 lg:ml-2 md:ml-2">
             <Title>Average member pricing total branch</Title>
             <AreaChart
               className="h-72 mt-4"
@@ -570,7 +558,7 @@ export default function Dashboard() {
               colors={["rose"]}
             />
           </Card>
-          <Card className="mb-4 ml-2">
+          <Card className="mb-4 xl:ml-2 lg:ml-2 md:ml-2">
             <Title>Coupon food used</Title>
             <BarChart
               className="h-72 mt-4"
@@ -592,7 +580,7 @@ export default function Dashboard() {
               colors={["rose"]}
             />
           </Card>
-          <Card className="mb-4 ml-2">
+          <Card className="mb-4 xl:ml-2 lg:ml-2 md:ml-2">
             <Title>Member Age Range</Title>
             <BarChart
               className="h-72 mt-4"

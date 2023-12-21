@@ -8,7 +8,6 @@ export const isTokenValid = (token: string): boolean => {
     console.log(new Date() < expirationDate);
     return new Date() < expirationDate;
   } catch (error) {
-
     return false;
   }
 };

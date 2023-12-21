@@ -17,17 +17,19 @@ import axios from "axios";
 import { format } from "path";
 
 export default function Dashboard() {
-  // const host = "http://localhost:8000";
-  const host = "https://mobile-app-prod.a-ramen.com";
+  const host = "http://localhost:8000";
+  // const host = "https://mobile-app-prod.a-ramen.com";
   const [listOfUserDeleteAccount, setListOfUserDeleteAccount] = useState<any>();
 
   const getListOfUserDeleteAccount = async () => {
     try {
       const result = await axios.get(
-        `${host}/api/cms/getListOfUserDeleteAccount`,
+        `${host}/api/dashboard/getListOfUserDeleteAccount`,
 
         {
-          headers: {"ngrok-skip-browser-warning": "69420",},
+          headers: {
+            Authorization: process.env.bearer_token,
+          },
         }
       );
       setListOfUserDeleteAccount(result.data.data);

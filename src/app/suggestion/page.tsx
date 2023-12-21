@@ -13,8 +13,8 @@ export default function Suggestion() {
     setIsLoading(false);
     console.log("Image loaded!");
   };
-  // const host = "http://localhost:8000";
-  const host = "https://mobile-app-prod.a-ramen.com";
+  const host = "http://localhost:8000";
+  // const host = "https://mobile-app-prod.a-ramen.com";
   const fetchDataImage = async (imagePath: string) => {
     try {
       const response = await axios.get(
@@ -22,9 +22,7 @@ export default function Suggestion() {
         {
           headers: {
             "Content-Type": "image/png",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXByb2QhIn0.Fqu5jwxkbym-VqwuiYCNiFTe8mcSi3HlUbK_Qa7ExAc",
-            "ngrok-skip-browser-warning": "69420",
+            Authorization: process.env.bearer_token,
           },
           responseType: "arraybuffer",
         }
@@ -44,9 +42,7 @@ export default function Suggestion() {
     try {
       const result = await axios.get(`${host}/api/suggestion`, {
         headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXByb2QhIn0.Fqu5jwxkbym-VqwuiYCNiFTe8mcSi3HlUbK_Qa7ExAc",
-          "ngrok-skip-browser-warning": "69420",
+          Authorization: process.env.bearer_token,
         },
       });
       setData(result.data);
@@ -90,7 +86,7 @@ export default function Suggestion() {
     <main>
       <div className={`${styles.container} h-full`}>
         <div className="flex justify-between w-full">
-          <h1 className={`${styles.title}`}>Problem / Suggestion asdf</h1>
+          <h1 className={`${styles.title}`}>Problem / Suggestion</h1>
           {/* <Link className={styles.btnDone} href="/createPromotion">
             <div className={styles.done}>Create Promotion</div>
           </Link> */}
