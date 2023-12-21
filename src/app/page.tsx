@@ -1,21 +1,47 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { UserButton } from "@clerk/nextjs";
 import { useState } from "react";
-import jwt from "jsonwebtoken";
 
 const LoginPage: React.FC = () => {
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const router = useRouter();
-  const handleLogin = async () => {
-    // const userId = "123";
-    // const token = jwt.sign({ userId }, "your-secret-key", { expiresIn: "1h" });
-    // document.cookie = `token=${token}; path=/; HttpOnly; SameSite=Strict`;
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-    // Redirect to the dashboard
-    router.push("/dashboard");
+  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUsername(e.target.value);
   };
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
+
+  const handleLogin = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:8000/api/auth/login?username=admin&password=admin",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, password }),
+        }
+      );
+
+      if (response.ok) {
+        const { token } = await response.json();
+
+        localStorage.setItem("token", token);
+
+        window.location.href = "/dashboard";
+      } else {
+        console.error("Authentication failed");
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+    }
+  };
+  const router = useRouter();
 
   return (
     <section className="bg-neutral-900 h-screen">
@@ -42,6 +68,7 @@ const LoginPage: React.FC = () => {
                   id="email"
                   className="bg-gray-50 border border-gray-400 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-400 focus:border-primary-400 block w-full p-2.5 "
                   placeholder="user ID"
+                  onChange={handleUsernameChange}
                 />
               </div>
               <div>
@@ -54,6 +81,7 @@ const LoginPage: React.FC = () => {
                   id="password"
                   placeholder="••••••••"
                   className="bg-gray-50 border border-gray-400 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-400 block w-full p-2.5  "
+                  onChange={handlePasswordChange}
                 />
               </div>
 

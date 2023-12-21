@@ -22,9 +22,9 @@ import { format } from "path";
 import Link from "next/link";
 
 export default function Dashboard() {
-  // const host = "http://localhost:8000";
-  const host =
-    "https://mobile-app-prod.a-ramen.com";
+  const host = "http://localhost:8000";
+  // const host =
+  //   "https://mobile-app-prod.a-ramen.com";
   const [countEarnPointGroupByBranchId, setCountEarnPointGroupByBranchId] =
     useState<any>();
   const [
@@ -42,9 +42,12 @@ export default function Dashboard() {
   const getCountEarnPointGroupByBranchId = async () => {
     try {
       const result = await axios.get(
-        `${host}/api/cms/getCountEarnPointGroupByBranchId`,
+        `${host}/api/dashboard/getCountEarnPointGroupByBranchId`,
         {
-          headers: { "ngrok-skip-browser-warning": "69420" },
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+          },
         }
       );
       setCountEarnPointGroupByBranchId(result.data);
@@ -55,9 +58,12 @@ export default function Dashboard() {
   const getTotalUserTransferPointGroupByDate = async () => {
     try {
       const result = await axios.get(
-        `${host}/api/cms/getTotalUserTransferPointGroupByDate`,
+        `${host}/api/dashboard/getTotalUserTransferPointGroupByDate`,
         {
-          headers: { "ngrok-skip-browser-warning": "69420" },
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+          },
         }
       );
       setTotalUserTransferPointGroupByDate(result.data);
@@ -69,9 +75,12 @@ export default function Dashboard() {
   const getTotalUsersGroupByDate = async () => {
     try {
       const result = await axios.get(
-        `${host}/api/cms/getTotalUsersGroupByDate`,
+        `${host}/api/dashboard/getTotalUsersGroupByDate`,
         {
-          headers: { "ngrok-skip-browser-warning": "69420" },
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+          },
         }
       );
       setTotalUsersGroupByDate(result.data);
@@ -83,9 +92,12 @@ export default function Dashboard() {
   const getTotalScanFailGroupByDate = async () => {
     try {
       const result = await axios.get(
-        `${host}/api/cms/getTotalScanFailGroupByDate`,
+        `${host}/api/dashboard/getTotalScanFailGroupByDate`,
         {
-          headers: { "ngrok-skip-browser-warning": "69420" },
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+          },
         }
       );
       setTotalScanFailGroupByDate(result.data);
@@ -97,9 +109,12 @@ export default function Dashboard() {
   const getTotalUseCouponGroupByType = async () => {
     try {
       const result = await axios.get(
-        `${host}/api/cms/getTotalUseCouponGroupByType`,
+        `${host}/api/dashboard/getTotalUseCouponGroupByType`,
         {
-          headers: { "ngrok-skip-browser-warning": "69420" },
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+          },
         }
       );
       setTotalUseCouponGroupByType(result.data);
@@ -111,9 +126,12 @@ export default function Dashboard() {
   const getTotalUseCouponMenuGroupByType = async () => {
     try {
       const result = await axios.get(
-        `${host}/api/cms/getTotalUseCouponMenuGroupByType`,
+        `${host}/api/dashboard/getTotalUseCouponMenuGroupByType`,
         {
-          headers: { "ngrok-skip-browser-warning": "69420" },
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+          },
         }
       );
       setTotalUseCouponMenuGroupByType(result.data);
@@ -125,8 +143,11 @@ export default function Dashboard() {
   const [totalUser, setTotalUser] = useState<any>();
   const getTotalUser = async () => {
     try {
-      const result = await axios.get(`${host}/api/cms/getTotalUser`, {
-        headers: { "ngrok-skip-browser-warning": "69420" },
+      const result = await axios.get(`${host}/api/dashboard/getTotalUser`, {
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+        },
       });
       setTotalUser(result.data.data);
     } catch (e) {
@@ -138,9 +159,12 @@ export default function Dashboard() {
   const getTotalUserTransferPoint = async () => {
     try {
       const result = await axios.get(
-        `${host}/api/cms/getTotalUserTransferPoint`,
+        `${host}/api/dashboard/getTotalUserTransferPoint`,
         {
-          headers: { "ngrok-skip-browser-warning": "69420" },
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+          },
         }
       );
       setTotalUserTransferPoint(result.data.data);
@@ -152,8 +176,11 @@ export default function Dashboard() {
   const [totalMemberDelete, setTotalMemberDelete] = useState<any>();
   const getTotalMemberDelete = async () => {
     try {
-      const result = await axios.get(`${host}/api/cms/getTotalMemberDelete`, {
-        headers: { "ngrok-skip-browser-warning": "69420" },
+      const result = await axios.get(`${host}/api/dashboard/getTotalMemberDelete`, {
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+        },
       });
       setTotalMemberDelete(result.data.data);
     } catch (e) {
@@ -165,9 +192,12 @@ export default function Dashboard() {
   const getTotalUseCoupon80Baht = async () => {
     try {
       const result = await axios.get(
-        `${host}/api/cms/getTotalUseCoupon80Baht`,
+        `${host}/api/dashboard/getTotalUseCoupon80Baht`,
         {
-          headers: { "ngrok-skip-browser-warning": "69420" },
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+          },
         }
       );
       setTotalUseCoupon80Baht(result.data.data);
@@ -181,9 +211,12 @@ export default function Dashboard() {
   const getTotalUserMemberTierGroupByTier = async () => {
     try {
       const result = await axios.get(
-        `${host}/api/cms/getTotalUserMemberTierGroupByTier`,
+        `${host}/api/dashboard/getTotalUserMemberTierGroupByTier`,
         {
-          headers: { "ngrok-skip-browser-warning": "69420" },
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+          },
         }
       );
       setTotalUserMemberTierGroupByTier(result.data);
@@ -195,8 +228,11 @@ export default function Dashboard() {
   const [userRegisterDaily, setUserRegisterDaily] = useState<any>();
   const getUserRegisterDaily = async () => {
     try {
-      const result = await axios.get(`${host}/api/cms/getUserRegisterDaily`, {
-        headers: { "ngrok-skip-browser-warning": "69420" },
+      const result = await axios.get(`${host}/api/dashboard/getUserRegisterDaily`, {
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+        },
       });
       console.log(result.data.data.totalUserToday);
       setUserRegisterDaily(result.data.data);
@@ -210,9 +246,12 @@ export default function Dashboard() {
   const getUserRegisterDailyByDateAndHour = async () => {
     try {
       const result = await axios.get(
-        `${host}/api/cms/getUserRegisterDailyByDateAndHour`,
+        `${host}/api/dashboard/getUserRegisterDailyByDateAndHour`,
         {
-          headers: { "ngrok-skip-browser-warning": "69420" },
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+          },
         }
       );
       setUserRegisterDailyByDateAndHour(result.data);
@@ -226,9 +265,12 @@ export default function Dashboard() {
   const getUserEarnPointDailyByDateAndHour = async () => {
     try {
       const result = await axios.get(
-        `${host}/api/cms/getUserEarnPointDailyByDateAndHour`,
+        `${host}/api/dashboard/getUserEarnPointDailyByDateAndHour`,
         {
-          headers: { "ngrok-skip-browser-warning": "69420" },
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+          },
         }
       );
       setUserEarnPointDailyByDateAndHour(result.data);
@@ -241,9 +283,12 @@ export default function Dashboard() {
   const getTotalMemberGroupByAge = async () => {
     try {
       const result = await axios.get(
-        `${host}/api/cms/getTotalMemberGroupByAge`,
+        `${host}/api/dashboard/getTotalMemberGroupByAge`,
         {
-          headers: { "ngrok-skip-browser-warning": "69420" },
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+          },
         }
       );
       setTotalMemberGroupByAge(result.data);
@@ -257,9 +302,12 @@ export default function Dashboard() {
   const getTotalMemberGroupByAgeRange = async () => {
     try {
       const result = await axios.get(
-        `${host}/api/cms/getTotalMemberGroupByAgeRange`,
+        `${host}/api/dashboard/getTotalMemberGroupByAgeRange`,
         {
-          headers: { "ngrok-skip-browser-warning": "69420" },
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+          },
         }
       );
       setTotalMemberGroupByAgeRange(result.data);
@@ -273,9 +321,12 @@ export default function Dashboard() {
   const getAvgEarnPointPerDayGroupByBranch = async () => {
     try {
       const result = await axios.get(
-        `${host}/api/cms/getAvgEarnPointPerDayGroupByBranch`,
+        `${host}/api/dashboard/getAvgEarnPointPerDayGroupByBranch`,
         {
-          headers: { "ngrok-skip-browser-warning": "69420" },
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+          },
         }
       );
       setAvgEarnPointPerDayGroupByBranch(result.data);
@@ -289,9 +340,12 @@ export default function Dashboard() {
   const getAvgEarnPointPerDayGroupByDate = async () => {
     try {
       const result = await axios.get(
-        `${host}/api/cms/getAvgEarnPointPerDayGroupByDate`,
+        `${host}/api/dashboard/getAvgEarnPointPerDayGroupByDate`,
         {
-          headers: { "ngrok-skip-browser-warning": "69420" },
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiISFhLXJhbWVuLXN0YWZmLXByb2QhIn0.VyItFSVyd0BbfL07y6j8eHQBMENM8OBY2fZCADaQNSE",
+          },
         }
       );
       setAvgEarnPointPerDayGroupByDate(result.data);
